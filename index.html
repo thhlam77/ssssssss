@@ -121,12 +121,25 @@
     overflow: hidden;
   }
 
-  /* Căn giữa icon để không bị lệch khi đổi */
+  /* Căn giữa icon */
   .codepro-music-box-toggle-btn i {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  /* Dấu xẹt khi tắt */
+  .muted::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 150%;
+    background: red;
+    transform: rotate(45deg);
+    top: -10%;
+    left: 50%;
+    transform-origin: center;
   }
 
   @media (max-width: 991px) {
@@ -154,15 +167,15 @@
 <script>
   $(document).ready(function () {
     const audio = document.getElementById("custom-audio");
-    const icon = $(".codepro-music-box-toggle-btn i");
+    const btn = $(".codepro-music-box-toggle-btn");
 
     $(".codepro-music-box-toggle-btn").on("click", function () {
       if (audio.paused) {
         audio.play();
-        icon.removeClass("fa-volume-off").addClass("fa-music");
+        btn.removeClass("muted");
       } else {
         audio.pause();
-        icon.removeClass("fa-music").addClass("fa-volume-off");
+        btn.addClass("muted");
       }
     });
   });
