@@ -118,11 +118,9 @@
     left: 0;
     bottom: 0;
     border-radius: 50%;
-    position: relative;
-    overflow: hidden;
   }
 
-  /* Căn icon giữa */
+  /* Giữ icon căn giữa tuyệt đối */
   .codepro-music-box-toggle-btn i {
     position: absolute;
     top: 50%;
@@ -130,17 +128,17 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Dấu gạch đỏ khi tắt */
-  .muted::after {
+  /* Dấu xẹt ngang */
+  .codepro-music-box-toggle-btn.muted::after {
     content: "";
     position: absolute;
-    width: 2px;
-    height: 150%;
-    background: red;
-    transform: rotate(45deg);
-    top: -10%;
+    top: 50%;
     left: 50%;
-    transform-origin: center;
+    width: 26px;
+    height: 2px;
+    background: red;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    pointer-events: none;
   }
 
   @media (max-width: 991px) {
@@ -170,7 +168,7 @@
     const audio = document.getElementById("custom-audio");
     const btn = $(".codepro-music-box-toggle-btn");
 
-    $(".codepro-music-box-toggle-btn").on("click", function () {
+    btn.on("click", function () {
       if (audio.paused) {
         audio.play();
         btn.removeClass("muted");
